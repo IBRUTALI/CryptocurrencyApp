@@ -14,7 +14,6 @@ class GetCoinUseCase @Inject constructor(
 
     operator fun invoke(coinId: String): Flow<Resource<CoinDetail>> {
         return flow {
-            emit(Resource.Loading())
             emit(repository.getCoinsById(coinId))
         }
     }

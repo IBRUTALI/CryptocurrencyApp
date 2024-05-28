@@ -13,7 +13,6 @@ class GetCoinsUseCase @Inject constructor(
 
     operator fun invoke(): Flow<Resource<List<Coin>>> {
         return flow {
-            emit(Resource.Loading())
             emit(repository.getCoins())
         }
     }

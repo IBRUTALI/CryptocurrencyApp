@@ -16,7 +16,7 @@ class CoinRepositoryImpl @Inject constructor(
 
     override suspend fun getCoins(): Resource<List<Coin>> {
         return try {
-            Resource.Loading(null)
+            Resource.Loading<Coin>(null)
             val coins = api.getCoins().map { CoinMapper().coinDtoToCoin(it) }
             Resource.Success(coins)
         } catch (e: HttpException) {
@@ -28,7 +28,7 @@ class CoinRepositoryImpl @Inject constructor(
 
     override suspend fun getCoinsById(coinId: String):  Resource<CoinDetail> {
         return try {
-            Resource.Loading(null)
+            Resource.Loading<CoinDetail>(null)
             val coin = CoinMapper().coinDetailDtoToCoinDetail(api.getCoinById(coinId))
             Resource.Success(coin)
         } catch (e: HttpException) {
